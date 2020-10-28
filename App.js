@@ -1,10 +1,8 @@
-//import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, Button, StatusBar, ScrollView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-//import Ionicons from 'react-native-vector-icons/Ionicons';
 import DeckList from './Components/deckList'
 import SingleDeck from './Components/singleDeck'
 import AddDeck from './Components/addDeck'
@@ -15,12 +13,12 @@ import { Provider } from "react-redux";
 import reducer from "./reducers";
 import middleware from "./middleware";
 import {setLocalNotification, timeToString} from './utils/notifs'
+import * as Notifications from 'expo-notifications';
 
 
 const Tab = createBottomTabNavigator();
 const DeckStack = createStackNavigator();
 const AddDeckStack = createStackNavigator();
-
 
 
 const Decks = () => (
@@ -40,10 +38,8 @@ const AddNewDeck = () => (
 
 
 class App extends React.Component {
-
   componentDidMount() {
     setLocalNotification()
-    timeToString()
   }
   render() {
   return (

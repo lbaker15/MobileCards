@@ -16,9 +16,9 @@ const Nav = (props) => {
             </TouchableOpacity>
             <TouchableOpacity 
             onPress={() => { 
-                navigation.navigate('Start_Game')
                 clearLocalNotification()
-                .then(setLocalNotification)
+                .then(setLocalNotification())
+                .then(navigation.navigate('Start_Game'))             
             }}
             style={styles.btn}>
                 <Text style={styles.white}>Start Game</Text>
@@ -73,7 +73,8 @@ const styles = StyleSheet.create({
         backgroundColor: "#4252ff",
     },
     white: {
-        color: "white"
+        color: "white",
+        textAlign: "center",
     }
 })
 

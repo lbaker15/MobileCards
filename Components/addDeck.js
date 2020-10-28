@@ -1,7 +1,6 @@
 import React from 'react'
 import { ScrollView } from 'react-native-gesture-handler'
-import { StyleSheet, Text, View, Button, StatusBar } from 'react-native';
-import * as API from '../utils/api'
+import { StyleSheet, Text, View, Button, StatusBar, TextInput } from 'react-native';
 import { connect } from 'react-redux';
 import {addDeckPre} from '../actions/addDecks'
 import {getSinglePre} from '../actions/getSingle'
@@ -10,13 +9,13 @@ import { useNavigation } from '@react-navigation/native';
 const Nav = (props) => {
     const navigation = useNavigation()
     return (
-        <button
-            style={{border: "none", cursor: "pointer", background: "#4252ff", marginTop: 20, boxShadow: "2px 2px 10px #4252ff", borderRadius: 10, color: "white", padding: 10, width: 100, margin: "0 auto"}}
-            onClick={() => {
+        <Button
+            title="Submit"
+            onPress={() => {
                 props.submit()
                 navigation.navigate("Single_Deck")
             }}
-        >Submit</button>
+        />
     )
 }
 
@@ -26,7 +25,7 @@ class AddDeck extends React.Component {
     }
     handleChange = (e) => {
         this.setState({
-            title: e.target.value
+            title: e
         })
     }
     submit = () => {
@@ -41,15 +40,14 @@ class AddDeck extends React.Component {
                 <View>
                     <Text style={styles.header}>Add A New Deck</Text>
                     <Text style={styles.center}>
-                        <div style={{display: "flex", margin: "0 auto", gap: 20, width: 200, flexDirection: "column"}}>
-                        <label style={{fontSize: 18}}>Deck Title</label>
-                        <input
-                        style={{border: "none", padding: 7.5, borderRadius: 15, boxShadow: "2px 2px 10px #c3c3c3"}}
-                        value={this.state.title}
-                        onChange={(e) => this.handleChange(e)}
-                        ></input>
+                        <View>
+                        <Text>Deck Title</Text>
+                        <TextInput
+                        style={{backgroundColor: "white", width: 200, padding: 7.5, borderRadius: 15}}
+                        onChangeText={this.handleChange}
+                        ></TextInput>
                         <Nav submit={this.submit} />
-                        </div>
+                        </View>
                     </Text>
                 </View>
             </ScrollView>

@@ -1,20 +1,20 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, StatusBar, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Button, StatusBar, ScrollView, TouchableOpacity, SafeAreaView } from 'react-native';
 import { connect } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 
 const Nav = () => {
     const navigation = useNavigation();
     return (
-        <View style={styles.center}>
+  
             <TouchableOpacity
             style={styles.btn}
             onPress={() => {
                 navigation.navigate('Single_Deck')
             }}>
-                <Text>Go back to deck</Text>
+                <Text style={styles.white}>Go back to deck</Text>
             </TouchableOpacity>
-        </View>
+
     )
 }
 
@@ -74,22 +74,23 @@ class StartGame extends React.Component {
         return (
             <View style={styles.center}>
                 <Text>{this.state.number + 1} / {this.state.total}</Text>
-                <View style={styles.center}>
+                
 
                     {this.state.answer === false &&
-                    <View>
+                    <SafeAreaView style={styles.centerText}>
                         <Text>{cards[this.state.number].question}</Text>
                         <Button onPress={this.changeState} title="Answer"></Button>
-                    </View>
+                    </SafeAreaView>
                     }
 
                     {this.state.answer === true &&
-                    <View>
+                    <SafeAreaView style={styles.centerText}>
                         <Text>{cards[this.state.number].answer}</Text>
                         <Button onPress={this.changeState} title="Question"></Button>
-                    </View>
+                    </SafeAreaView>
                     }                    
 
+                    <SafeAreaView style={styles.btnHolder}>
                     <TouchableOpacity 
                     style={styles.btn}
                     onPress={this.correct}>
@@ -100,7 +101,8 @@ class StartGame extends React.Component {
                     onPress={this.incorrect}>
                         <Text style={styles.white}>Incorrect</Text>
                     </TouchableOpacity>
-                </View>
+                    </SafeAreaView>
+
             </View>
         )
         } else {
@@ -112,15 +114,18 @@ class StartGame extends React.Component {
                 <Text style={styles.header}>
                 End of game!
                 You scored {this.state.correct} out of {this.state.total}.
+                </Text>
+               <View style={styles.btnHolder}>
                <Nav />
                <TouchableOpacity 
                style={styles.btn}
                onPress={this.restart}>
-                   <Text>
+                   <Text style={styles.white}>
                        Restart Game
                    </Text>
                </TouchableOpacity>
-               </Text>
+               </View>
+               
             </View>
         )
     }
@@ -132,7 +137,13 @@ const styles = StyleSheet.create({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        marginTop: 40
+        marginTop: 40,
+    },
+    centerText: {
+        textAlign: "center",
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: 25,
     },
     btn: {
         fontSize: 14,
@@ -149,14 +160,17 @@ const styles = StyleSheet.create({
         textAlign: "center",
     },
     fullView: {
-        width: "100%",
-        textAlign: "center",
-        marginTop: 150,
-        fontSize: 16,
+        width: 375,
+        marginTop: 120
+    },
+    btnHolder: {
+        marginTop: 20,
+        alignItems: "center"
     },
     header: {
         fontSize: 18,
-    }   
+        textAlign: "center",
+    },
 })
 
 export default connect((state) => ({

@@ -31,14 +31,14 @@ class AddCard extends React.Component {
         console.log(this.props.decks)
         return (
             <View style={{marginTop: 50, display: "flex", gap: 40, alignItems: "center", justifyContent: "center",}}>
-                <label style={{fontFamily: 'sans-serif', fontSize: 18}}>Question:</label>
+                <Text style={{fontFamily: 'sans-serif', fontSize: 18}}>Question:</Text>
                 <TextInput
-                style={{border: "none", backgroundColor: "white", width: 400, padding: 7.5, borderRadius: 15, boxShadow: "2px 2px 10px #c3c3c3"}}
+                style={{backgroundColor: "white", width: 250, padding: 7.5, borderRadius: 15}}
                 onChangeText={this.handleChange}
                 ></TextInput>
-                <label style={{fontFamily: 'sans-serif', fontSize: 18}}>Answer:</label>
+                <Text style={{fontFamily: 'sans-serif', fontSize: 18}}>Answer:</Text>
                 <TextInput
-                style={{border: "none", backgroundColor: "white", width: 400, padding: 7.5, borderRadius: 15, boxShadow: "2px 2px 10px #c3c3c3"}}
+                style={{backgroundColor: "white", width: 250, padding: 7.5, borderRadius: 15}}
                 onChangeText={this.handleChangeTwo}
                 ></TextInput>
                 <TouchableOpacity 
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
         marginTop: 20, 
         borderRadius: 10, 
         color: "white", 
-        width: 200,
+        width: 80,
         backgroundColor: "#4252ff",
     }, 
     white: {
