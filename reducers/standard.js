@@ -6,6 +6,7 @@ import {DELETE} from '../actions/deleteDeck'
 export default function standard (state=[], action) {
     switch(action.type) {
         case GET_DECKS :
+            console.log("reducer fired", state, action)
             return state.concat(action.decks)
         case ADD_DECK :
             const newArray = [action.deck]

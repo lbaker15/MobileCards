@@ -26,6 +26,7 @@ const Nav = (props) => {
 
 class DeckList extends React.Component {
     componentDidMount() {
+        console.log("MOUNT")
         this.props.dispatch(getDecksPre())        
     }
     handlePress = (title) => {
@@ -53,10 +54,12 @@ class DeckList extends React.Component {
     }
     render() {
         const {decks} = this.props
+        console.log(decks)
+        if (decks[0] !== null & decks[0] !== undefined) {
         return (
                 <ScrollView style={styles.contain}>
                     <Text>
-                    {decks.length !== 0 &&
+                    {decks[0] !== null & decks[0] !== undefined &&
                         Object.values(decks[0]).map(x => {
                             return (
                                 <Animated.View style={[styles.boxes, {transform: [{translateX: this.state.fadeAn}]}]} key={x.title}>                                               
@@ -87,7 +90,10 @@ class DeckList extends React.Component {
                     }
                     </Text>
             </ScrollView>
-        )
+        )} else {
+            
+            return <Text>Loading</Text>
+        }
     }
 }
 

@@ -9,12 +9,10 @@ function getDecks(decks) {
 }
 
 export function getDecksPre() {
-    return (dispatch) => {
+    return async function (dispatch) {
         try {
-        return Promise.all([
-            API.getDecks()
-        ])
-        .then(decks => dispatch(getDecks(decks)))
+        const decks = await API.getDecks()
+        dispatch(getDecks(decks))
         } catch(err) {
             console.log(err)
         }

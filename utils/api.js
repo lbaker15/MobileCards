@@ -30,13 +30,15 @@ const dummyData = {
 
 
  export const getDecks = async () => {
-   
         const data = await AsyncStorage.getItem(DECKS_KEY);
-        return data !== null && data !== "undefined"
-        ? JSON.parse(data)
-        : AsyncStorage.setItem(DECKS_KEY, JSON.stringify(dummyData))
-
- }
+        if (data !== null && data !== undefined) {
+          return JSON.parse(data)
+        } else {
+          const set = new Promise((res) => { res(AsyncStorage.setItem(DECKS_KEY, JSON.stringify(dummyData))) })
+          const get = new Promise((res) => { res(AsyncStorage.getItem(DECKS_KEY)) })
+          return Promise.all([get]).then(data => JSON.parse(data))
+  }
+}
 
  export const addDeck = async (value) => {
     AsyncStorage.mergeItem( 
