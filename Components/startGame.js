@@ -61,7 +61,9 @@ class StartGame extends React.Component {
     restart = () => {
         this.setState((prev) => ({
             number: 0,
-            end: !prev.end
+            end: !prev.end,
+            correct: 0,
+            incorrect: 0
         }))
     }
     render() {

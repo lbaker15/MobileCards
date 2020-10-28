@@ -6,8 +6,8 @@ node v12.18.2
 Expo cli
 
 How to Run
-git clone https://github.com/sabrinadowla14/mobile_flashcards
-cd to mobile-flashcards
+git clone https://github.com/lbaker15/Flashcards
+cd to flashcards
 expo install
 expo start or yarn start
 
