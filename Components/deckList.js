@@ -26,7 +26,6 @@ const Nav = (props) => {
 
 class DeckList extends React.Component {
     componentDidMount() {
-        console.log("MOUNT")
         this.props.dispatch(getDecksPre())        
     }
     handlePress = (title) => {
