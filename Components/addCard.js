@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { StyleSheet, Text, TextInput, View, SafeAreaView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-native';
 import * as API from '../utils/api'
 import { addCardPre } from '../actions/addCard';
 
