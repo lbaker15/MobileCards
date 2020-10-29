@@ -31,7 +31,8 @@ class StartGame extends React.Component {
         if(this.state.number < this.state.total - 1) {
             this.setState((prev) => ({
                 number: prev.number + 1,
-                correct: prev.correct + 1
+                correct: prev.correct + 1,
+                answer: false,
             }))
         } else {
             this.setState((prev) => ({
@@ -44,7 +45,8 @@ class StartGame extends React.Component {
         if(this.state.number < this.state.total - 1) {
             this.setState((prev) => ({
                 number: prev.number + 1,
-                incorrect: prev.incorrect + 1
+                incorrect: prev.incorrect + 1,
+                answer: false,
             }))
         } else {
             this.setState((prev) => ({

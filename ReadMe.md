@@ -4,6 +4,7 @@ Start android emulator via genymotion. Run npm start which will open metro bundl
 Dev Environment
 node v12.18.2
 Expo cli
+Project has been test using genymotion emulator on a android device (google nexus 4).
 
 How to Run
 git clone https://github.com/lbaker15/Flashcards

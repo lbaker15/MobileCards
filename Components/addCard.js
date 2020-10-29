@@ -7,7 +7,8 @@ import { addCardPre } from '../actions/addCard';
 class AddCard extends React.Component {
     state = {
         question: '',
-        answer: ''
+        answer: '',
+        alert: '',
     }
     handleChange = (text) => {
         this.setState({
@@ -21,8 +22,24 @@ class AddCard extends React.Component {
     }
     submitCard = () => {
         const title = this.props.selected
-        const question = { "question": this.state.question, "answer": this.state.answer }
-        this.props.dispatch(addCardPre(question,title))
+        if (this.state.question.length !== 0 && this.state.answer.length !== 0) {
+            const question = { "question": this.state.question, "answer": this.state.answer }
+            new Promise((res, rej) => {
+                res(this.props.dispatch(addCardPre(question,title)))
+            })
+            .then(() => {
+                this.setState({
+                    alert: 'Card added'
+                })
+            })
+            .then(() => {
+                setTimeout(() => {this.setState({alert: ''})}, 2000)
+            }) 
+        } else {
+            this.setState({
+                alert: 'Please enter both fields'
+            })
+        }
     }
     startGame = () => {
 
@@ -31,6 +48,7 @@ class AddCard extends React.Component {
         console.log(this.props.decks)
         return (
             <View style={{marginTop: 50, display: "flex", gap: 40, alignItems: "center", justifyContent: "center",}}>
+                <Text>{this.state.alert}</Text>
                 <Text style={{fontFamily: 'sans-serif', fontSize: 18}}>Question:</Text>
                 <TextInput
                 style={{backgroundColor: "white", width: 250, padding: 7.5, borderRadius: 15}}
