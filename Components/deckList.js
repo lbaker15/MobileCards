@@ -1,6 +1,6 @@
 import React from 'react'
 import { ScrollView } from 'react-native-gesture-handler'
-import { StyleSheet, Text, View, TouchableOpacity, Animated } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Animated, Dimensions } from 'react-native';
 import {getDecksPre} from '../actions/getDecks'
 import { useNavigation } from '@react-navigation/native';
 import {getSinglePre} from '../actions/getSingle'
@@ -53,11 +53,23 @@ class DeckList extends React.Component {
     }
     render() {
         const {decks} = this.props
-        console.log(decks)
         if (decks[0] !== null & decks[0] !== undefined) {
         return (
+            <View style={styles.load}>
+
+            </View>
+        )} else {
+            return (
+                <View style={styles.contain}>
+                    <Text></Text>
+                </View>
+            )
+        }
+    }
+}
+/*
                 <ScrollView style={styles.contain}>
-                    <Text>
+                    <Text style={styles.margin}>
                     {decks[0] !== null & decks[0] !== undefined &&
                         Object.values(decks[0]).map(x => {
                             return (
@@ -66,7 +78,7 @@ class DeckList extends React.Component {
                                         <Text style={styles.large}>
                                             {x.title}
                                         </Text>
-                                        <Text>{x.questions.length} cards</Text>
+                                        <Text style={styles.white}>{x.questions.length} cards</Text>
                                             
                                         <View>
                                             <Nav fade={this.fadeOut} title={x.title} handle={this.handlePress} />
@@ -89,16 +101,21 @@ class DeckList extends React.Component {
                     }
                     </Text>
             </ScrollView>
-        )} else {
-            
-            return <Text>Loading</Text>
-        }
-    }
-}
+*/
+var width = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
+    load: {
+        backgroundColor: "black",
+        color: "white",
+        height: 600,
+    },
     contain: {
-        marginTop: 20
+        backgroundColor: "black",
+        color: "white",
+    },
+    margin: {
+        marginTop: 20,
     },
     btn: {
         fontSize: 14,
@@ -117,7 +134,7 @@ const styles = StyleSheet.create({
     boxes: {
         fontSize: 20,
         textAlign: "center",
-        width: 375,
+        width: width,
         display: "flex",
         alignItems: "center",     
         paddingBottom: 30,
@@ -127,7 +144,8 @@ const styles = StyleSheet.create({
         textAlign: "center"
     },
     large: {
-        fontSize: 18
+        fontSize: 18,
+        color: "white"
     }
 })
 

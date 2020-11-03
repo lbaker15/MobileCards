@@ -68,6 +68,7 @@ class StartGame extends React.Component {
             incorrect: 0
         }))
     }
+    
     render() {
         const {decks, selected} = this.props
 
@@ -77,20 +78,24 @@ class StartGame extends React.Component {
  
         return (
             <View style={styles.center}>
-                <Text>{this.state.number + 1} / {this.state.total}</Text>
+                <Text style={styles.whiteTop}>{this.state.number + 1} / {this.state.total}</Text>
                 
 
                     {this.state.answer === false &&
                     <SafeAreaView style={styles.centerText}>
-                        <Text>{cards[this.state.number].question}</Text>
-                        <Button onPress={this.changeState} title="Answer"></Button>
+                        <Text style={styles.whiteText}>{cards[this.state.number].question}</Text>
+                        <TouchableOpacity style={styles.btn} onPress={this.changeState}>
+                            <Text style={styles.white}>Answer</Text>
+                        </TouchableOpacity>
                     </SafeAreaView>
                     }
 
                     {this.state.answer === true &&
                     <SafeAreaView style={styles.centerText}>
-                        <Text>{cards[this.state.number].answer}</Text>
-                        <Button onPress={this.changeState} title="Question"></Button>
+                        <Text style={styles.whiteText}>{cards[this.state.number].answer}</Text>
+                        <TouchableOpacity style={styles.btn} onPress={this.changeState}>
+                            <Text style={styles.white}>Question</Text>
+                        </TouchableOpacity>
                     </SafeAreaView>
                     }                    
 
@@ -110,7 +115,7 @@ class StartGame extends React.Component {
             </View>
         )
         } else {
-            return <View><Text>No cards have been added :(</Text></View>
+            return <View style={styles.center}><Text style={styles.white}>No cards have been added :(</Text></View>
         }
     } else {
         return (
@@ -141,7 +146,8 @@ const styles = StyleSheet.create({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        marginTop: 40,
+        height: 600,
+        backgroundColor: "black"
     },
     centerText: {
         textAlign: "center",
@@ -163,9 +169,22 @@ const styles = StyleSheet.create({
         color: "white",
         textAlign: "center",
     },
+    whiteText: {
+        color: "white",
+        textAlign: "center",
+        fontSize: 20,
+        marginBottom: 20,
+    },
+    whiteTop: {
+        color: "white",
+        textAlign: "center",
+        marginTop: 50,
+        fontSize: 20
+    },
     fullView: {
         width: 375,
-        marginTop: 120
+        backgroundColor: "black",
+        height: 600,
     },
     btnHolder: {
         marginTop: 20,
@@ -174,8 +193,12 @@ const styles = StyleSheet.create({
     header: {
         fontSize: 18,
         textAlign: "center",
+        marginTop: 100,
+        color: "white"
     },
 })
+
+
 
 export default connect((state) => ({
     decks: state.standard,

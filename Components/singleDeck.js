@@ -33,7 +33,7 @@ class SingleDeck extends React.Component {
         const object = (selected !== null) ? decks[0][selected] : null
 
         return (
-            <SafeAreaView>
+            <SafeAreaView style={styles.black}>
 
                     {object !== null && (
                         <View style={styles.view}>
@@ -50,18 +50,24 @@ class SingleDeck extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    black: {
+        backgroundColor: "black",
+        height: 800
+    },
     view: {
         display: "flex",
         textAlign: "center",
         marginTop: 125,
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
     },
     title: {
-        fontSize: 30
+        fontSize: 30,
+        color: "white"
     },
     question: {
-        fontSize: 23
+        fontSize: 23,
+        color: "white"
     },
     btn: {
         fontSize: 14,

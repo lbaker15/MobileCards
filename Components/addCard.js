@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-native';
-import * as API from '../utils/api'
 import { addCardPre } from '../actions/addCard';
 
 class AddCard extends React.Component {
@@ -9,6 +8,8 @@ class AddCard extends React.Component {
         question: '',
         answer: '',
         alert: '',
+        isFocused: true,
+        isFocusedTwo: true,
     }
     handleChange = (text) => {
         this.setState({
@@ -44,19 +45,35 @@ class AddCard extends React.Component {
     startGame = () => {
 
     }
+    handleBlur = () => {
+        this.setState((prev) => ({
+            isFocused: !prev.isFocused
+        }))
+    }
+    handleBlurTwo = () => {
+        this.setState((prev) => ({
+            isFocusedTwo: !prev.isFocusedTwo
+        }))
+    }
     render() {
         console.log(this.props.decks)
         return (
-            <View style={{marginTop: 50, display: "flex", gap: 40, alignItems: "center", justifyContent: "center",}}>
-                <Text>{this.state.alert}</Text>
-                <Text style={{fontFamily: 'sans-serif', fontSize: 18}}>Question:</Text>
+            <View style={styles.contain}>
+                <Text style={styles.alert}>{this.state.alert}</Text>
+                <Text style={styles.ques}>Question:</Text>
                 <TextInput
-                style={{backgroundColor: "white", width: 250, padding: 7.5, borderRadius: 15}}
+                placeholder="Is React a functional programming langauge?"
+                placeholderTextColor={'white'}
+                onBlur={this.handleBlur}
+                style={(this.state.isFocused === false && this.state.question.length < 1) ? [styles.input, {borderBottomColor: "red", borderBottomWidth: 0.75}] : [styles.input, {borderBottomColor: "white", borderBottomWidth: 0.75}] }
                 onChangeText={this.handleChange}
                 ></TextInput>
-                <Text style={{fontFamily: 'sans-serif', fontSize: 18}}>Answer:</Text>
+                <Text style={styles.ans}>Answer:</Text>
                 <TextInput
-                style={{backgroundColor: "white", width: 250, padding: 7.5, borderRadius: 15}}
+                placeholder="yes"
+                placeholderTextColor={'white'}
+                onBlur={this.handleBlurTwo}
+                style={(this.state.isFocusedTwo === false && this.state.answer.length < 1) ? [styles.input, {borderBottomColor: "red", borderBottomWidth: 0.75}] : [styles.input, {borderBottomColor: "white", borderBottomWidth: 0.75}] }
                 onChangeText={this.handleChangeTwo}
                 ></TextInput>
                 <TouchableOpacity 
@@ -70,13 +87,45 @@ class AddCard extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    contain: {
+        height: 500,
+        display: "flex", 
+        alignItems: "center", 
+        justifyContent: "center",
+        backgroundColor: "black",
+    },
+    alert: {
+        marginTop: -110,
+        marginBottom: 20,
+        fontSize: 16,
+        color: "red"
+    },
+    ques: {
+        fontFamily: 'sans-serif', 
+        fontSize: 18,
+        color: "white",
+        marginBottom: 5,
+        marginTop: 0,
+    },
+    input: {
+        width: 250, 
+        padding: 7.5, 
+        color: "white",
+    },
+    ans: {
+        fontFamily: 'sans-serif', 
+        fontSize: 18,
+        color: "white",
+        marginBottom: 5,
+        marginTop: 20,
+    },
     btn: {
         fontSize: 14,
         padding: 10,
-        marginTop: 20, 
+        marginTop: 40, 
         borderRadius: 10, 
         color: "white", 
-        width: 80,
+        width: 130,
         backgroundColor: "#4252ff",
     }, 
     white: {

@@ -15,23 +15,54 @@ import middleware from "./middleware";
 import {setLocalNotification, timeToString} from './utils/notifs'
 import * as Notifications from 'expo-notifications';
 
-
 const Tab = createBottomTabNavigator();
 const DeckStack = createStackNavigator();
 const AddDeckStack = createStackNavigator();
 
-
 const Decks = () => (
-  <DeckStack.Navigator>
-    <DeckStack.Screen name="Deck_List" component={DeckList} />
-    <DeckStack.Screen name="Single_Deck" component={SingleDeck} />
-    <DeckStack.Screen name="Add_Card" component={AddCard} />
-    <DeckStack.Screen name="Start_Game" component={StartGame} />
+  <DeckStack.Navigator
+  screenOptions={{
+    headerStyle: {
+      backgroundColor: 'black',
+    },
+    headerTintColor: 'white'
+  }}
+  >
+    <DeckStack.Screen 
+    name="Deck_List" 
+    component={DeckList} 
+    options={{
+      title: 'Deck List',
+    }} />
+    <DeckStack.Screen 
+    name="Single_Deck" 
+    component={SingleDeck} 
+    options={{
+      title: 'Single Deck',
+    }} />
+    <DeckStack.Screen 
+    name="Add_Card" 
+    component={AddCard} 
+    options={{
+      title: 'Add Card',
+    }} />
+    <DeckStack.Screen 
+    name="Start_Game" 
+    component={StartGame} 
+    options={{
+      title: 'Start Game',
+    }} />
   </DeckStack.Navigator>
 )
 
 const AddNewDeck = () => (
-  <AddDeckStack.Navigator>
+  <AddDeckStack.Navigator
+  screenOptions={{
+    headerStyle: {
+      backgroundColor: 'black',
+    },
+    headerTintColor: 'white'
+  }}>
     <AddDeckStack.Screen name="Add Deck" component={AddDeck} />
   </AddDeckStack.Navigator>
 )
@@ -45,8 +76,8 @@ class App extends React.Component {
   return (
     <Provider store={createStore(reducer, middleware) }>
     <View style={styles.container}>
-      <NavigationContainer>
-        <StatusBar backgroundColor='#ecf0f1' barStyle="light-content"  />
+      <NavigationContainer> 
+        <StatusBar backgroundColor='black' barStyle="dark-content"  />
         <Tab.Navigator
           tabBarOptions={{
             activeTintColor: 'tomato',
@@ -70,6 +101,6 @@ export default App
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'black',
   },
 });
