@@ -14,6 +14,7 @@ import reducer from "./reducers";
 import middleware from "./middleware";
 import {setLocalNotification, timeToString} from './utils/notifs'
 import * as Notifications from 'expo-notifications';
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
 const Tab = createBottomTabNavigator();
 const DeckStack = createStackNavigator();
@@ -79,9 +80,23 @@ class App extends React.Component {
       <NavigationContainer> 
         <StatusBar backgroundColor='black' barStyle="dark-content"  />
         <Tab.Navigator
+          screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused, color, size }) => {
+              let iconName;
+              if (route.name === 'Deck List') {
+                iconName = focused ? 'ios-list-box' : 'ios-list';
+              } else if (route.name === 'Add Deck') {
+                iconName = focused ? 'md-add-circle' : 'md-add-circle-outline';
+              }
+              return <Ionicons name={iconName} size={size} color={color} />
+            }
+          })}
           tabBarOptions={{
-            activeTintColor: 'tomato',
-            inactiveTintColor: 'gray',
+            style: {
+              backgroundColor: "#5947ff"
+            },
+            activeTintColor: '#2c144f',
+            inactiveTintColor: 'white',
           }}
         >
 

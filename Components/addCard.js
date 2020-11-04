@@ -56,7 +56,7 @@ class AddCard extends React.Component {
         }))
     }
     render() {
-        console.log(this.props.decks)
+        if (this.props.route.params.darkMode === true) {
         return (
             <View style={styles.contain}>
                 <Text style={styles.alert}>{this.state.alert}</Text>
@@ -83,6 +83,34 @@ class AddCard extends React.Component {
                 </TouchableOpacity>
             </View>
         )
+        } else {
+            return (
+            <View style={styles.containWhite}>
+                <Text style={styles.alertWhite}>{this.state.alert}</Text>
+                <Text style={styles.quesWhite}>Question:</Text>
+                <TextInput
+                placeholder="Is React a functional programming langauge?"
+                placeholderTextColor={'black'}
+                onBlur={this.handleBlur}
+                style={(this.state.isFocused === false && this.state.question.length < 1) ? [styles.inputWhite, {borderBottomColor: "red", borderBottomWidth: 0.75}] : [styles.inputWhite, {borderBottomColor: "black", borderBottomWidth: 0.75}] }
+                onChangeText={this.handleChange}
+                ></TextInput>
+                <Text style={styles.ansWhite}>Answer:</Text>
+                <TextInput
+                placeholder="yes"
+                placeholderTextColor={'black'}
+                onBlur={this.handleBlurTwo}
+                style={(this.state.isFocusedTwo === false && this.state.answer.length < 1) ? [styles.inputWhite, {borderBottomColor: "red", borderBottomWidth: 0.75}] : [styles.inputWhite, {borderBottomColor: "black", borderBottomWidth: 0.75}] }
+                onChangeText={this.handleChangeTwo}
+                ></TextInput>
+                <TouchableOpacity 
+                onPress={this.submitCard}
+                style={styles.btn}>
+                    <Text style={styles.whiteWhite}>Add Card</Text>
+                </TouchableOpacity>
+            </View>  
+            )
+        }
     }
 }
 
@@ -130,6 +158,54 @@ const styles = StyleSheet.create({
     }, 
     white: {
         color: "white",
+        textAlign: "center",
+    },
+
+
+
+    containWhite: {
+        height: 500,
+        display: "flex", 
+        alignItems: "center", 
+        justifyContent: "center",
+        backgroundColor: "white",
+    },
+    alertWhite: {
+        marginTop: -110,
+        marginBottom: 20,
+        fontSize: 16,
+        color: "red"
+    },
+    quesWhite: {
+        fontFamily: 'sans-serif', 
+        fontSize: 18,
+        color: "black",
+        marginBottom: 5,
+        marginTop: 0,
+    },
+    inputWhite: {
+        width: 250, 
+        padding: 7.5, 
+        color: "black",
+    },
+    ansWhite: {
+        fontFamily: 'sans-serif', 
+        fontSize: 18,
+        color: "black",
+        marginBottom: 5,
+        marginTop: 20,
+    },
+    btn: {
+        fontSize: 14,
+        padding: 10,
+        marginTop: 40, 
+        borderRadius: 10, 
+        color: "white", 
+        width: 130,
+        backgroundColor: "#4252ff",
+    }, 
+    whiteWhite: {
+        color: "black",
         textAlign: "center",
     }
 })

@@ -3,7 +3,8 @@ import { StyleSheet, Text, View, Button, StatusBar, ScrollView, TouchableOpacity
 import { connect } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from "expo-linear-gradient";
-import LightModeGame from './lightmode'
+
+
 
 
 const Nav = (props) => {
@@ -33,7 +34,9 @@ const Nav = (props) => {
     )
 }
 
-class StartGame extends React.Component {
+
+
+class LightModeGame extends React.Component {
     state = {
         answer: false,
         number: 0,
@@ -83,23 +86,20 @@ class StartGame extends React.Component {
             incorrect: 0
         }))
     }
-    
     render() {
         const {decks, selected} = this.props
-
-        //if (this.props.route.params.darkMode === true) {
-            if (this.state.end === false) {
+        if (this.state.end === false) {
             if (decks[0][selected].questions.length !== 0) {
                 const cards = decks[0][selected].questions
     
             return (
-                <View style={styles.center}>
-                    <Text style={styles.whiteTop}>{this.state.number + 1} / {this.state.total}</Text>
+                <View style={styles.centerWhite}>
+                    <Text style={styles.whiteTopWhite}>{this.state.number + 1} / {this.state.total}</Text>
                     
 
                         {this.state.answer === false &&
-                        <SafeAreaView style={styles.centerText}>
-                            <Text style={styles.whiteText}>{cards[this.state.number].question}</Text>
+                        <SafeAreaView style={styles.centerTextWhite}>
+                            <Text style={styles.whiteTextWhite}>{cards[this.state.number].question}</Text>
                             <TouchableOpacity onPress={this.changeState}>
                                 <LinearGradient
                                 colors={["rgba(66,105,255,1)", "rgba(91,50,255,1)"]}
@@ -107,15 +107,15 @@ class StartGame extends React.Component {
                                 start={{x: 1, y: 0.5}}
                                 style={styles.btn}
                                 >
-                                    <Text style={styles.white}>Answer</Text>
+                                    <Text style={styles.whiteWhite}>Answer</Text>
                                 </LinearGradient>
                             </TouchableOpacity>
                         </SafeAreaView>
                         }
 
                         {this.state.answer === true &&
-                        <SafeAreaView style={styles.centerText}>
-                            <Text style={styles.whiteText}>{cards[this.state.number].answer}</Text>
+                        <SafeAreaView style={styles.centerTextWhite}>
+                            <Text style={styles.whiteTextWhite}>{cards[this.state.number].answer}</Text>
                             <TouchableOpacity onPress={this.changeState}>
                                 <LinearGradient
                                 colors={["rgba(66,105,255,1)", "rgba(91,50,255,1)"]}
@@ -123,7 +123,7 @@ class StartGame extends React.Component {
                                 start={{x: 1, y: 0.5}}
                                 style={styles.btn}
                                 >
-                                    <Text style={styles.white}>Question</Text>
+                                    <Text style={styles.whiteWhite}>Question</Text>
                                 </LinearGradient>
                             </TouchableOpacity>
                         </SafeAreaView>
@@ -138,7 +138,7 @@ class StartGame extends React.Component {
                             start={{x: 1, y: 0.5}}
                             style={styles.btn}
                             >
-                                <Text style={styles.white}>Correct</Text>
+                                <Text style={styles.whiteWhite}>Correct</Text>
                             </LinearGradient>
                         </TouchableOpacity>
                         <TouchableOpacity 
@@ -149,7 +149,7 @@ class StartGame extends React.Component {
                             start={{x: 1, y: 0.5}}
                             style={styles.btn}
                             >
-                                <Text style={styles.white}>Incorrect</Text>
+                                <Text style={styles.whiteWhite}>Incorrect</Text>
                             </LinearGradient>
                         </TouchableOpacity>
                         </SafeAreaView>
@@ -157,17 +157,17 @@ class StartGame extends React.Component {
                 </View>
             )
             } else {
-                return <View style={styles.center}><Text style={styles.white}>No cards have been added :(</Text></View>
+                return <View style={styles.centerWhite}><Text style={styles.whiteWhite}>No cards have been added :(</Text></View>
             }
         } else {
             return (
-                <View style={styles.fullView}>
-                    <Text style={styles.header}>
+                <View style={styles.fullViewWhite}>
+                    <Text style={styles.headerWhite}>
                     End of game!
                     You scored {this.state.correct} out of {this.state.total}.
                     </Text>
                 <View style={styles.btnHolder}>
-                <Nav darkMode={this.props.route.params.darkMode} />
+                <Nav darkMode={this.props.darkMode} />
                 <TouchableOpacity 
                 onPress={this.restart}>
                     <LinearGradient
@@ -176,7 +176,7 @@ class StartGame extends React.Component {
                         start={{x: 1, y: 0.5}}
                         style={styles.btn}
                         >
-                    <Text style={styles.white}>
+                    <Text style={styles.whiteWhite}>
                         Restart Game
                     </Text>
                     </LinearGradient>
@@ -186,72 +186,12 @@ class StartGame extends React.Component {
                 </View>
             )
         }
-    /*} else {
-        return <LightModeGame darkMode={this.props.route.params.darkMode} />
-    }*/
     }
 }
 
+
+
 const styles = StyleSheet.create({
-    center: {
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        height: 600,
-        backgroundColor: "black"
-    },
-    centerText: {
-        textAlign: "center",
-        alignItems: "center",
-        justifyContent: "center",
-        marginTop: 25,
-    },
-    btn: {
-        fontSize: 14,
-        padding: 10,
-        marginTop: 20, 
-        borderRadius: 10, 
-        color: "white", 
-        width: 200,
-        backgroundColor: "#4252ff",
-        textAlign: "center",
-    }, 
-    white: {
-        color: "white",
-        textAlign: "center",
-    },
-    whiteText: {
-        color: "white",
-        textAlign: "center",
-        fontSize: 20,
-        marginBottom: 20,
-    },
-    whiteTop: {
-        color: "white",
-        textAlign: "center",
-        marginTop: 50,
-        fontSize: 20
-    },
-    fullView: {
-        width: 375,
-        backgroundColor: "black",
-        height: 600,
-    },
-    btnHolder: {
-        marginTop: 20,
-        alignItems: "center"
-    },
-    header: {
-        fontSize: 18,
-        textAlign: "center",
-        marginTop: 100,
-        color: "white"
-    },
-
-
-
-
-
     centerWhite: {
         display: "flex",
         flexDirection: "column",
@@ -313,4 +253,4 @@ const styles = StyleSheet.create({
 export default connect((state) => ({
     decks: state.standard,
     selected: state.selected
-}))(StartGame)
+}))(LightModeGame)
