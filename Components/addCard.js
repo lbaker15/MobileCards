@@ -42,9 +42,6 @@ class AddCard extends React.Component {
             })
         }
     }
-    startGame = () => {
-
-    }
     handleBlur = () => {
         this.setState((prev) => ({
             isFocused: !prev.isFocused
@@ -56,7 +53,8 @@ class AddCard extends React.Component {
         }))
     }
     render() {
-        if (this.props.route.params.darkMode === true) {
+        const {dark} = this.props
+        if (dark === true) {
         return (
             <View style={styles.contain}>
                 <Text style={styles.alert}>{this.state.alert}</Text>
@@ -212,5 +210,6 @@ const styles = StyleSheet.create({
 
 export default connect((state) => ({
     decks: state.standard,
-    selected: state.selected
+    selected: state.selected,
+    dark: state.darkMode,
 }))(AddCard)

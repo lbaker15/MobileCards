@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import {deleteDeckPre} from '../actions/deleteDeck'
 import { BubblesLoader } from 'react-native-indicator';
 import { LinearGradient } from "expo-linear-gradient";
-
+import {darkMode} from '../actions/darkMode'
 
 
 
@@ -18,7 +18,7 @@ const Nav = (props) => {
         <View style={styles.center}>
             <TouchableOpacity
             onPress={() => {
-                navigation.navigate('Single_Deck', props.darkMode)
+                navigation.navigate('Single_Deck')
                 props.handle(props.title)
                 props.fade()
             }}>
@@ -71,13 +71,16 @@ class DeckList extends React.Component {
         ]).start()
     }
     handleLight = () => {
-        this.setState((prev) => ({
-            dark: !prev.dark
-        }))
+        new Promise((res, rej) => {
+            res(this.setState((prev) => ({
+                dark: !prev.dark
+            })))
+        })
+        .then(() => this.props.dispatch(darkMode(this.state.dark)))
     }
     render() {
-        const {decks} = this.props
-        if (this.state.dark === true) {
+        const {decks, dark} = this.props
+        if (dark === true) {
         if (decks[0] !== null & decks[0] !== undefined) {
         return (
             <ScrollView style={styles.contain}>
@@ -274,4 +277,5 @@ const styles = StyleSheet.create({
 
 export default connect((state) => ({
     decks: state.standard,
+    dark: state.darkMode,
 }))(DeckList)

@@ -11,7 +11,7 @@ const Nav = (props) => {
     return (
         <View>
             <TouchableOpacity 
-            onPress={() => navigation.navigate('Add_Card', props)}
+            onPress={() => navigation.navigate('Add_Card')}
             >
             <LinearGradient
             colors={["rgba(66,105,255,1)", "rgba(91,50,255,1)"]}
@@ -34,7 +34,7 @@ const Nav = (props) => {
             onPress={() => { 
                 clearLocalNotification()
                 .then(setLocalNotification())
-                .then(navigation.navigate('Start_Game', props))             
+                .then(navigation.navigate('Start_Game'))             
             }}> 
                 <LinearGradient
                 colors={["rgba(66,105,255,1)", "rgba(91,50,255,1)"]}
@@ -55,22 +55,21 @@ const Nav = (props) => {
 }
 
 class SingleDeck extends React.Component {
-    
     render() {
-        const {selected, decks} = this.props
+        const {selected, decks, dark} = this.props
         const object = (selected !== null) ? decks[0][selected] : null
-        if (this.props.route.params === true) {
+        if (dark === true) {
         return (
             <SafeAreaView style={styles.black}>
 
-                    {object !== null && (
-                        <View style={styles.view}>
-                            <Text style={styles.title}> {object.title} </Text>
-                            <Text style={styles.question}> {object.questions.length} cards </Text>
-                            <Nav darkMode={this.props.route.params} />
-                        </View>
-                        )                        
-                    }
+                {object !== null && (
+                    <View style={styles.view}>
+                        <Text style={styles.title}> {object.title} </Text>
+                        <Text style={styles.question}> {object.questions.length} cards </Text>
+                        <Nav darkMode={dark} />
+                    </View>
+                    )                        
+                }
               
             </SafeAreaView>
         )
@@ -82,7 +81,7 @@ class SingleDeck extends React.Component {
                             <View style={styles.viewLight}>
                                 <Text style={styles.titleLight}> {object.title} </Text>
                                 <Text style={styles.questionLight}> {object.questions.length} cards </Text>
-                                <Nav darkMode={this.props.route.params} />
+                                <Nav darkMode={dark} />
                             </View>
                             )                        
                         }
@@ -165,6 +164,7 @@ const styles = StyleSheet.create({
 
 export default connect((state) => ({
     decks: state.standard,
-    selected: state.selected
+    selected: state.selected,
+    dark: state.darkMode,
 }))(SingleDeck)
 
