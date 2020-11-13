@@ -1,5 +1,5 @@
 <h1>About The Project</h1>
-<p>This project is an app where users are able to add revision cards to either pre-existing or created topics.  Users can test their knowledge via the built in game, allowing users to view how many cards they got correct.</p>
+<p>This project is an app where users are able to add revision cards to pre-existing or created topics.  Users can test their knowledge via the built in game which on completion lets the user know how many cards they got correct.</p>
 
 <h1>Development Environment</h1>
 <ul>
