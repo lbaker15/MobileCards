@@ -15,7 +15,7 @@ This is an example of how you may give instructions on setting up your project l
 npm install npm@latest -g
 <h1>Installation</h1>
 <ol>
-<li>git clone https://github.com/lbaker15/Flashcards</li>
+<li>git clone https://github.com/lbaker15/MobileCards</li>
 <li>cd to flashcards</li>
 <li>expo install</li>
 <li>expo start or yarn start</li>
