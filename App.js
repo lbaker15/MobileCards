@@ -7,6 +7,7 @@ import DeckList from './Components/deckList'
 import SingleDeck from './Components/singleDeck'
 import AddDeck from './Components/addDeck'
 import AddCard from './Components/addCard'
+import EndGame from './Components/endGame'
 import StartGame from './Components/startGame'
 import { createStore } from 'redux';
 import { Provider } from "react-redux";
@@ -29,30 +30,36 @@ const Decks = () => (
     headerTintColor: 'white'
   }}
   >
-    <DeckStack.Screen 
-    name="Deck_List" 
-    component={DeckList} 
-    options={{
-      title: 'Deck List',
-    }} />
-    <DeckStack.Screen 
-    name="Single_Deck" 
-    component={SingleDeck} 
-    options={{
-      title: 'Single Deck',
-    }} />
-    <DeckStack.Screen 
-    name="Add_Card" 
-    component={AddCard} 
-    options={{
-      title: 'Add Card',
-    }} />
-    <DeckStack.Screen 
-    name="Start_Game" 
-    component={StartGame} 
-    options={{
-      title: 'Start Game',
-    }} />
+      <DeckStack.Screen 
+        name="Deck_List" 
+        component={DeckList} 
+        options={{
+          title: 'Deck List',
+        }} />
+        <DeckStack.Screen 
+        name="Single_Deck" 
+        component={SingleDeck} 
+        options={{
+          title: 'Single Deck',
+        }} />
+        <DeckStack.Screen 
+        name="Add_Card" 
+        component={AddCard} 
+        options={{
+          title: 'Add Card',
+        }} />
+        <DeckStack.Screen 
+        name="Start_Game" 
+        component={StartGame} 
+        options={{
+          title: 'Start Game',
+        }} />
+        <DeckStack.Screen 
+        name="End_Game" 
+        component={EndGame} 
+        options={{
+          title: 'End Game',
+        }} />
   </DeckStack.Navigator>
 )
 

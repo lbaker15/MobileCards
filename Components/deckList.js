@@ -32,7 +32,7 @@ const Nav = (props) => {
                         <Text style={styles.white}>Go to deck</Text>
                     }
                     {props.darkMode === false && 
-                        <Text style={styles.whiteLight}>Go to deck</Text>
+                        <Text style={styles.whiteLightO}>Go to deck</Text>
                     }
                 
                 </LinearGradient>
@@ -130,6 +130,7 @@ class DeckList extends React.Component {
                 <View style={styles.load}>
                     <BubblesLoader size={70} color={"#4252ff"} dotRadius={15} />
                 </View>
+
             )
         }
     } else {
@@ -164,7 +165,7 @@ class DeckList extends React.Component {
                                             start={{x: 1, y: 0.5}}
                                             style={styles.btn}
                                             >
-                                                <Text style={styles.whiteLight}>Delete Deck</Text>
+                                                <Text style={styles.whiteLightO}>Delete Deck</Text>
                                             </LinearGradient>
                                             </TouchableOpacity>
                                         </View>                                     
@@ -183,8 +184,6 @@ class DeckList extends React.Component {
 
 
 /**/
-
-
 var width = Dimensions.get('window').width;
 var height = Dimensions.get('window').height;
 
@@ -267,6 +266,10 @@ const styles = StyleSheet.create({
     },
     whiteLight: {
         color: "black",
+        textAlign: "center"
+    },
+    whiteLightO: {
+        color: "white",
         textAlign: "center"
     },
     largeLight: {

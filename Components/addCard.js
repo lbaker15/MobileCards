@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#4252ff",
     }, 
     whiteWhite: {
-        color: "black",
+        color: "white",
         textAlign: "center",
     }
 })

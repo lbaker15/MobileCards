@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#4252ff",
     },
     whiteLight: {
-        color: "black",
+        color: "white",
         textAlign: "center",
     }
 })

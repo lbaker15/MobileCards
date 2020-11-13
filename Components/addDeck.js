@@ -55,6 +55,7 @@ class AddDeck extends React.Component {
         }))
     }
     render() {
+        if (this.props.dark === true) {
         return (
             <ScrollView style={styles.bg}>
                 <View style={styles.align}>
@@ -73,6 +74,25 @@ class AddDeck extends React.Component {
                 </View>
             </ScrollView>
         )
+        } else {
+            return (
+                <ScrollView style={styles.bgWhite}>
+                    <View style={styles.align}>
+                        <Text style={styles.headerWhite}>Add A New Deck</Text>
+                        <Text style={styles.centerWhite}>
+                            <View>
+                            <TextInput
+                            onBlur={this.handleBlur}
+                            style={(this.state.isFocused === false && this.state.title.length < 1) ? [styles.inputWhite, {borderBottomColor: "red", borderBottomWidth: 0.75}] : [styles.inputWhite, {borderBottomColor: "black", borderBottomWidth: 0.75}] }
+                            onChangeText={this.handleChange}
+                            ></TextInput>
+                            <Nav submit={this.submit} />
+                            </View>
+                        </Text>
+                    </View>
+                </ScrollView>
+            )
+        }
     }
 }
 
@@ -120,9 +140,38 @@ const styles = StyleSheet.create({
     b: {
         width: 275,
         alignItems: "center"
-    }
+    },
+
+    bgWhite: {
+        backgroundColor: 'white',
+        color: 'black'
+    },
+    inputWhite: {
+        width: 275, 
+        padding: 7.5, 
+        marginTop: 0,
+        color: "black"
+    },
+    headerWhite: {
+        fontSize: 22.5,
+        paddingLeft: 12.5,
+        marginBottom: 0,
+        marginTop: 30,
+        textAlign: "center",
+        color: 'black'
+    },
+    centerWhite: {
+        marginTop: 20,
+        textAlign: "center",
+        color: 'black'
+    },
+    whiteWhite: {
+        color: "black",
+        textAlign: "center",
+    },
 })
 
 export default connect((state) => ({
     decks: state.standard,
+    dark: state.darkMode,
 }))(AddDeck)
